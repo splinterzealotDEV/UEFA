@@ -122,7 +122,7 @@ END//
 
 //
 CREATE
-TRIGGER `update_falta` AFTER UPDATE
+TRIGGER `update_gol` AFTER UPDATE
 ON `falta`
 FOR EACH ROW BEGIN
 UPDATE Equipo  SET NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal where id_gol=NEW.id_gol;
@@ -130,31 +130,31 @@ END//
 
 //
 CREATE
-TRIGGER `delete_falta` AFTER DELETE
+TRIGGER `delete_gol` AFTER DELETE
 ON `falta`
 FOR EACH ROW BEGIN
 DELETE FROM Arbitraje where id_gol=OLD.id_gol;
 END//
 ***
 CREATE
-TRIGGER `insert_gol` AFTER INSERT
+TRIGGER `insert_jugador` AFTER INSERT
 ON `gol`
 FOR EACH ROW BEGIN
-INSERT INTO cliente VALUES(NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal);
+INSERT INTO cliente VALUES(NEW.id_jugador,NEW.id_numero,NEW.id_Nombre,NEW.posicion,NEW.fecha_de_nacimiento,NEW.nacionalidad,NEW.estatura,NEW.efectividad);
 END//
 
 //
 CREATE
-TRIGGER `update_falta` AFTER UPDATE
+TRIGGER `update_jugador` AFTER UPDATE
 ON `falta`
 FOR EACH ROW BEGIN
-UPDATE Equipo  SET NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal where id_gol=NEW.id_gol;
+UPDATE Equipo  SET NEW.id_jugador,NEW.id_numero,NEW.id_Nombre,NEW.posicion,NEW.fecha_de_nacimiento,NEW.nacionalidad,NEW.estatura,NEW.efectividad where id_jugador=NEW.id_jugador;
 END//
 
 //
 CREATE
-TRIGGER `delete_falta` AFTER DELETE
+TRIGGER `delete_jugador` AFTER DELETE
 ON `falta`
 FOR EACH ROW BEGIN
-DELETE FROM Arbitraje where id_gol=OLD.id_gol;
+DELETE FROM Arbitraje where id_jugador=OLD.id_jugador;
 END//
