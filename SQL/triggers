@@ -158,3 +158,147 @@ ON `falta`
 FOR EACH ROW BEGIN
 DELETE FROM Arbitraje where id_jugador=OLD.id_jugador;
 END//
+***
+CREATE
+TRIGGER `insert_estadio` AFTER INSERT
+ON `Estadio`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_estadio,NEW.id_nombre,NEW.pais,NEW.ciudad);
+END//
+
+//
+CREATE
+TRIGGER `update_estadio` AFTER UPDATE
+ON `Estadio`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_estadio,NEW.id_nombre,NEW.pais,NEW.ciudad where id_jugador=NEW.id_jugador;
+END//
+
+//
+CREATE
+TRIGGER `delete_estadio` AFTER DELETE
+ON `Estadio`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_estadio=OLD.id_estadio;
+END//
+***
+CREATE
+TRIGGER `insert_director` AFTER INSERT
+ON `Director_Tecnico`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_director_tecnico,NEW.nombre,NEW.fecha_de_nacimiento,NEW.nacionalidad);
+END//
+
+//
+CREATE
+TRIGGER `update_director` AFTER UPDATE
+ON `Director_Tecnico`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_director_tecnico,NEW.nombre,NEW.fecha_de_nacimiento,NEW.nacionalidad where id_director_tecnico=NEW.id_director_tecnico;
+END//
+
+//
+CREATE
+TRIGGER `delete_estadio` AFTER DELETE
+ON `Director_Tecnico`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_director_tecnico=OLD.id_director_tecnico;
+END//
+***
+CREATE
+TRIGGER `insert_Partido_Equipo_Liga` AFTER INSERT
+ON `Partido_Equipo_Liga`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_partido_equipo_liga,NEW.id_local,NEW.id_visitante,NEW.id_liga);
+END//
+
+//
+CREATE
+TRIGGER `update_Partido_Equipo_Liga` AFTER UPDATE
+ON `Partido_Equipo_Liga`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_partido_equipo_liga,NEW.id_local,NEW.id_visitante,NEW.id_liga where id_partido_equipo_liga=NEW.id_partido_equipo_liga;
+END//
+
+//
+CREATE
+TRIGGER `delete_Partido_Equipo_Liga` AFTER DELETE
+ON `Partido_Equipo_Liga`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_partido_equipo_liga=OLD.id_partido_equipo_liga;
+END//
+***
+//
+CREATE
+TRIGGER `insert_liga` AFTER INSERT
+ON `Liga`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_liga,NEW.temporada,NEW.pais,NEW.nombre);
+END//
+
+//
+CREATE
+TRIGGER `update_liga` AFTER UPDATE
+ON `Liga`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_liga,NEW.temporada,NEW.pais,NEW.nombre where id_liga=NEW.id_liga;
+END//
+
+//
+CREATE
+TRIGGER `delete_liga` AFTER DELETE
+ON `Liga`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_liga=OLD.id_liga;
+END//
+
+
+***
+//
+CREATE
+TRIGGER `insert_Pais` AFTER INSERT
+ON `Pais`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_pais,NEW.nombre);
+END//
+
+//
+CREATE
+TRIGGER `update_Pais` AFTER UPDATE
+ON `Pais`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_pais,NEW.nombre where id_pais=NEW.id_pais;
+END//
+
+//
+CREATE
+TRIGGER `delete_Pais` AFTER DELETE
+ON `Pais`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_pais=OLD.id_pais;
+END//
+
+***
+//
+CREATE
+TRIGGER `insert_Temporada` AFTER INSERT
+ON `Temporada`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_temporada,NEW.año);
+END//
+
+//
+CREATE
+TRIGGER `update_Temporada` AFTER UPDATE
+ON `Temporada`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_temporada,NEW.año where id_temporada=NEW.id_temporada;
+END//
+
+//
+CREATE
+TRIGGER `delete_Temporada` AFTER DELETE
+ON `Temporada`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_temporada=OLD.id_temporada;
+END//
