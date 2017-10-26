@@ -1,0 +1,160 @@
+CREATE
+TRIGGER `insert_arbitraje` AFTER INSERT
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_arbitraje,NEW.id_arbitro,NEW.id_abanderado1,NEW.id_abanderado2,NEW.cuarto_oficial,NEW.id_partido);
+END//
+
+//
+CREATE
+TRIGGER `update_arbitraje` AFTER UPDATE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+UPDATE Arbitraje  SET NEW.id_arbitraje,NEW.id_arbitro,NEW.id_abanderado1,NEW.id_abanderado2,NEW.cuarto_oficial,NEW.id_partido where id_arbitraje=NEW.id_arbitraje;
+END//
+
+//
+CREATE
+TRIGGER `delete_arbitraje` AFTER DELETE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id=OLD.id;
+END//
+***
+CREATE
+TRIGGER `insert_arbitro` AFTER INSERT
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_arbitro,NEW.nombre,NEW.fecha_nacimiento);
+END//
+
+//
+CREATE
+TRIGGER `update_arbitro` AFTER UPDATE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+UPDATE Arbitro  SET NEW.id_arbitro,NEW.nombre,NEW.fecha_nacimiento where id_arbitro=NEW.id_arbitro;
+END//
+
+//
+CREATE
+TRIGGER `delete_arbitro` AFTER DELETE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id=OLD.id_arbitro;
+END//
+***
+CREATE
+TRIGGER `insert_equipo_liga` AFTER INSERT
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_equipo_liga,NEW.id_equipo,NEW.id_liga,NEW.posicion);
+END//
+
+//
+CREATE
+TRIGGER `update_equipo_liga` AFTER UPDATE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+UPDATE Arbitro  SET NEW.id_equipo_liga,NEW.id_equipo,NEW.id_liga,NEW.posicion where id_equipo_liga=NEW.id_equipo_liga;
+END//
+
+//
+CREATE
+TRIGGER `delete_equipo_liga` AFTER DELETE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_equipo_liga=OLD.id_equipo_liga;
+END//
+***
+CREATE
+TRIGGER `insert_equipo` AFTER INSERT
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_equipo,NEW.dt,NEW.nombre,NEW.pais,NEW.estadio);
+END//
+
+//
+CREATE
+TRIGGER `update_equipo` AFTER UPDATE
+ON `Equipo`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_equipo,NEW.dt,NEW.nombre,NEW.pais,NEW.estadio where id_equipo=NEW.id_equipo;
+END//
+
+//
+CREATE
+TRIGGER `delete_equipo` AFTER DELETE
+ON `Arbitraje`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_equipo=OLD.id_equipo;
+END//
+***
+CREATE
+TRIGGER `insert_falta` AFTER INSERT
+ON `falta`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_falta,NEW.id_jugador,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.tarjeta);
+END//
+
+//
+CREATE
+TRIGGER `update_falta` AFTER UPDATE
+ON `falta`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_falta,NEW.id_jugador,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.tarjeta where id_falta=NEW.id_falta;
+END//
+
+//
+CREATE
+TRIGGER `delete_falta` AFTER DELETE
+ON `falta`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_falta=OLD.id_falta;
+END//
+***
+CREATE
+TRIGGER `insert_gol` AFTER INSERT
+ON `gol`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal);
+END//
+
+//
+CREATE
+TRIGGER `update_falta` AFTER UPDATE
+ON `falta`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal where id_gol=NEW.id_gol;
+END//
+
+//
+CREATE
+TRIGGER `delete_falta` AFTER DELETE
+ON `falta`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_gol=OLD.id_gol;
+END//
+***
+CREATE
+TRIGGER `insert_gol` AFTER INSERT
+ON `gol`
+FOR EACH ROW BEGIN
+INSERT INTO cliente VALUES(NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal);
+END//
+
+//
+CREATE
+TRIGGER `update_falta` AFTER UPDATE
+ON `falta`
+FOR EACH ROW BEGIN
+UPDATE Equipo  SET NEW.id_gol,NEW.id_partido,NEW.id_equipo,NEW.minuto,NEW.id_jugador,NEW.penal where id_gol=NEW.id_gol;
+END//
+
+//
+CREATE
+TRIGGER `delete_falta` AFTER DELETE
+ON `falta`
+FOR EACH ROW BEGIN
+DELETE FROM Arbitraje where id_gol=OLD.id_gol;
+END//
