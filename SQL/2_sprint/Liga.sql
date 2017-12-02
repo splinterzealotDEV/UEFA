@@ -21,9 +21,10 @@ USE `Liga` ;
 DROP TABLE IF EXISTS `Liga`.`Pais` ;
 
 CREATE TABLE IF NOT EXISTS `Liga`.`Pais` (
-  `id_pais` INT NOT NULL,
+  `id_pais` INT NOT NULL ,
+  `version` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
-  `id_db` INT NOT NULL,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_pais`))
 ENGINE = InnoDB;
 
@@ -41,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Jugador` (
   `fecha_de_nacimiento` DATE NULL,
   `nacionalidad` INT NULL,
   `estatura` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_jugador`),
   FOREIGN KEY (`nacionalidad`)
   REFERENCES `Liga`.`Pais` (`id_pais`))
@@ -58,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Arbitro` (
   `nombre` VARCHAR(45) NULL,
   `fecha_de_nacimiento` DATE NULL,
   `nacionalidad` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_arbitro`),
   FOREIGN KEY (`nacionalidad`)
     REFERENCES `Liga`.`Pais` (`id_pais`))
@@ -76,7 +79,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Arbitraje` (
   `id_abanderado1` INT NULL,
   `id_abanderado2` INT NULL,
   `id_cuartooficial` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_partido`),
   FOREIGN KEY (`id_partido`)
     REFERENCES `Liga`.`Partido_Equipo_Liga` (`id_partido_equipo_liga`),
@@ -100,7 +104,8 @@ DROP TABLE IF EXISTS `Liga`.`Tarjeta` ;
 CREATE TABLE IF NOT EXISTS `Liga`.`Tarjeta` (
   `id_tarjeta` INT NOT NULL,
   `valor` TINYINT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_tarjeta`))
 ENGINE = InnoDB;
 
@@ -116,7 +121,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Falta` (
   `id_partido` INT NOT NULL,
   `minuto` INT NULL,
   `id_tarjeta` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_falta`, `id_jugador`, `id_partido`),
   FOREIGN KEY (`id_jugador`)
   REFERENCES `Liga`.`Jugador` (`id_jugador`),
@@ -138,7 +144,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Estadio` (
   `nombre` VARCHAR(45) NULL,
   `id_pais` INT NULL,
   `ciudad` VARCHAR(45) NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_estadio`),
   FOREIGN KEY (`id_pais`)
   REFERENCES `Liga`.`Pais` (`id_pais`)
@@ -156,7 +163,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Director_tecnico` (
   `nombre` VARCHAR(45) NULL,
   `fecha_de_nacimiento` DATE NULL,
   `nacionalidad` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_director_tecnico`),
   FOREIGN KEY (`nacionalidad`)
   REFERENCES `Liga`.`Pais` (`id_pais`))
@@ -174,7 +182,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Equipo` (
   `nombre` VARCHAR(45) NULL,
   `id_pais` INT NULL,
   `id_estadio` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_equipo`),
    FOREIGN KEY (`id_director_tecnico`)
   REFERENCES `Liga`.`Director_tecnico` (`id_director_tecnico`),
@@ -194,7 +203,8 @@ DROP TABLE IF EXISTS `Liga`.`Temporada` ;
 CREATE TABLE IF NOT EXISTS `Liga`.`Temporada` (
   `id_temporada` INT NOT NULL,
   `año` INT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_temporada`))
 ENGINE = InnoDB;
 
@@ -213,7 +223,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Partido` (
   `id_temporada` INT NOT NULL,
   `id_local` INT NOT NULL,
   `id_visitante` INT NOT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_partido`),
   FOREIGN KEY (`id_temporada`)
     REFERENCES `Liga`.`Temporada` (`id_temporada`),
@@ -236,7 +247,8 @@ CREATE TABLE IF NOT EXISTS `Liga`.`Gol` (
   `minuto` INT NULL,
   `id_jugador` INT NULL,
   `penal` TINYINT NULL,
-  `id_db` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
+  `id_db` INT DEFAULT 2,
   PRIMARY KEY (`id_gol`),
     FOREIGN KEY (`id_partido`)
     REFERENCES `Liga`.`Partido` (`id_partido`),
@@ -253,6 +265,7 @@ DROP TABLE IF EXISTS `Liga`.`Liga` ;
 
 CREATE TABLE IF NOT EXISTS `Liga`.`Liga` (
   `id_liga` INT NOT NULL,
+  `version` INT NOT NULL AUTO_INCREMENT,
   `nombre` INT,
    PRIMARY KEY (`id_liga`)
 )ENGINE = InnoDB;
