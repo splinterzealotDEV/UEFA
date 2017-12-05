@@ -5,7 +5,7 @@ CREATE TRIGGER insert_Pais after insert on Pais
 FOR EACH ROW
 BEGIN
 IF NEW.id_db = 1 THEN
-  insert into Pais_Liga values(new.id_pais,new.nombre,new.id_db);
+  insert into Pais_Liga values(new.id_pais,new.id_db,new.nombre);
 END IF;
 END;//
 
@@ -29,10 +29,11 @@ IF NEW.id_db = 1 THEN
   	new.numero,
   	new.nombre,
   	new.posicion,
-  	new.fecha_de_nacimiento,
+  	new.fecha_nacimiento,
   	new.nacionalidad,
   	new.estatura,
   	new.id_db
+    
   	);
 END IF;
 END;//
